@@ -2,9 +2,7 @@
 
 package seminar_5;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.random.*;
 
 public class mazeGen {
     public static void printarr (int[][] xa) {
@@ -57,25 +55,29 @@ public class mazeGen {
         }
         return line;
     }
-    public static int stepNumb(int[][] line, int row, int x) {
+    public static int stepNumb(int[] line, int x) {
         int count = 0;
-        for (int j = 0; j < line[row].length; j++) {
-            if (line[row][j] == x) {
+        for (int j = 0; j < line.length; j++) {
+            if (line[j] == x) {
                 count +=1;
             }
+        }
+        return count;
+    }
+    public static int numbWalls(int[] mazerow, int[] walls, int x) {
+        int count = 0;
+        for (int j = 0; j < walls.length; j++) {
+            if (mazerow[j] == x && walls[j] == 1 ) {count +=1;} 
         }
         return count;
     }
     public static void main(String[] arg) {
     
     Random random = new Random();
-    int[][] mazevert = new int[4][5]; //{{0,0,0,1},{1,0,1,1},{0,1,0,1},{0,0,0,1}};
-    int[][] mazehoriz = new int[4][5]; //{{1,0,1,0},{0,0,1,0},{1,1,0,1},{1,1,1,1}};
-    int[][] maze = new int[4][5];
-    
+    int[][] mazevert = new int[10][10];
+    int[][] mazehoriz = new int[10][10];
+    int[][] maze = new int[10][10];
     int step = 1;
-    // HashSet<Integer> setmaze = new HashSet<>();
-    // setmaze.add(1);
     maze = fillLine(maze, 0, step);
     step = maze[0][maze[0].length-1];
     for (int i = 0; i < maze.length; i++) {
@@ -92,16 +94,14 @@ public class mazeGen {
             }
         }
         mazevert[i][mazevert[i].length-1] = 1;
-        int exit = 0; 
         for (int j = 0; j < maze[i].length; j++) {
-            int setline = stepNumb(maze, i, maze[i][j]);
+            int setline = stepNumb(maze[i], maze[i][j]);
             if (setline == 1) {
                 mazehoriz[i][j] = 0;
             } else {
-                if (random.nextInt(10) <= 5) {
-                    if (setline > 1 && exit == 0) {
+                if (random.nextInt(10) <= 7) {
+                    if (setline -1 > numbWalls(maze[i], mazehoriz[i], maze[i][j])) {
                         mazehoriz[i][j] = 1;
-                        exit = 1;
                     }
                 }
             }
@@ -130,12 +130,6 @@ public class mazeGen {
         }
     }
     mazehoriz[maze.length-1][maze[maze.length-1].length -1] = 1;
-    
-    System.out.println(0x5e);
     printMaze(mazevert, mazehoriz);
-    printarr(maze);
-    printarr(mazehoriz);
-    printarr(mazevert);
-
     }
 }
