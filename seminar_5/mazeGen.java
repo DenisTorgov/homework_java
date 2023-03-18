@@ -121,9 +121,10 @@ public class mazeGen {
         }
         maze = fillLine(maze, i+1, maxline + 1);
         }
-    // for (int j = 0; j < maze[i].length -1; j++) {
-    //     mazehoriz[i][j] = 1;    
-    // }
+       
+    }
+    for (int j = 0; j < maze[maze.length-1].length; j++) {
+        mazehoriz[maze.length-1][j] = 1; 
     }
     
     System.out.println(0x5e);
