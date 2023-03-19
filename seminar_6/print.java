@@ -6,7 +6,7 @@ public class print {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < xa.length; i++) {
             for (int j = 0; j < xa[i].length; j++) {
-                sb.append(xa[i][j] + ", ");
+                sb.append(xa[i][j] + "| ");
             }
             System.out.println(sb);
         sb.setLength(0);

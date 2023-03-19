@@ -49,7 +49,7 @@ public class mazeGen {
                         {0, 1, 0, 1, 1, 0, 1, 1, 0, 1},
                         {0, 0, 1, 0, 1, 0, 0, 0, 1, 1},
                         {0, 0, 0, 0, 1, 1, 1, 1, 1, 1}};
-        return maze1;
+        return maze;
     }
 
     public static int[][] main(int m, int n) {
